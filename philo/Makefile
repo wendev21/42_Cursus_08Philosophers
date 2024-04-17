@@ -6,14 +6,14 @@
 #    By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 11:46:47 by wecorzo-          #+#    #+#              #
-#    Updated: 2024/04/15 12:32:53 by wecorzo-         ###   ########.fr        #
+#    Updated: 2024/04/16 16:09:12 by wecorzo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 SOURCES =  handle_error.c\
 		   philo_utils.c\
-		   time.c\
+		   initiation.c\
 		   main.c
 
 OBJS = $(SOURCES:.c=.o)
