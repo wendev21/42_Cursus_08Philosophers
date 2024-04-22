@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:43:58 by wecorzo-          #+#    #+#             */
-/*   Updated: 2024/04/16 16:21:56 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/04/22 12:31:39 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_isnumber(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			i++;
@@ -33,8 +33,8 @@ int	ft_atoi_short(char *str)
 	int	num;
 
 	i = 0;
-	num  = 0;
-	while(str[i])
+	num = 0;
+	while (str[i])
 	{
 		num *= 10;
 		num += str[i] - '0';
@@ -43,10 +43,10 @@ int	ft_atoi_short(char *str)
 	return (num);
 }
 
-int ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
 	int	num;
-	int sign;
+	int	sign;
 	int	i;
 
 	num = 0;

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 15:06:13 by wecorzo-          #+#    #+#             */
-/*   Updated: 2024/04/22 12:28:44 by wecorzo-         ###   ########.fr       */
+/*   Created: 2024/04/22 15:23:37 by wecorzo-          #+#    #+#             */
+/*   Updated: 2024/04/22 15:37:00 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <philo.h>
 
-int	main(int argc, char **argv)
+int	check_death(t_philo *philo)
 {
-	if (parseo(argc, argv) == 1)
-		return (printf("%sError ❌%s", COLOR_RED, COLOR_RESET), 0);
-	if (init_value(argv, argc) == 1)
-		return (printf("%sError ❌%s", COLOR_RED, COLOR_RESET), 0);
+	int	i;
+	i = 0;
+	while (philo[i])
+	{
+		i++;
+	}
 	return (0);
 }

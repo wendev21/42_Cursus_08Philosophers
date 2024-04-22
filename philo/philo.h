@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:50:24 by wecorzo-          #+#    #+#             */
-/*   Updated: 2024/04/16 16:27:39 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:34:11 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <sys/time.h>
 # include <time.h>
+# include <sys/types.h>
 # include <pthread.h>
 
 # define COLOR_RED "\033[0;31m"
@@ -30,10 +32,10 @@
 # define TAKE_FORKS "has taken a fork 🍴"
 # define THINK "is thinking 🧠"
 # define SLEEP "is sleeping 😴"
-# define EAT "is eatingi 🍝"
+# define EAT "is eating 🍝"
 # define DIED "died 💀"
 
-typedef struct s_program t_program;
+typedef struct s_program	t_program;
 
 typedef struct s_philo
 {
@@ -54,6 +56,7 @@ typedef struct s_philo
 struct s_program
 {
 	int				dead_flag;
+	pthread_mutex_t	*fork;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write_lock;
@@ -66,6 +69,10 @@ int		check_value(int argc, char **argv);
 int		ft_isnumber(char *str);
 int		ft_atoi_short(char *str);
 int		ft_atoi(char *str);
-int		init_value(int argc, char **argv);
-int		init_program(t_program *program, int argc, char **argv);
+int		init_value(char **argv, int argc);
+int		init_program(t_program *program, char **argv);
+int		init_philo(char **argv, t_program *program, int argc);
+int		create_threads(t_program *program, t_philo *philo);
+int		set_muthex_fork(t_program *program);
+void	ft_usleep(long time_requested);
 #endif
