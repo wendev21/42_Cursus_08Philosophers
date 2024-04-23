@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:43:58 by wecorzo-          #+#    #+#             */
-/*   Updated: 2024/04/23 13:14:15 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:21:02 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,21 @@ void	print_msg(char *str, char *color, t_philo philo)
 	printf("[%zu]	", (get_time() - philo.start_time));
 	printf("%s%d--%s%s\n", color, philo.id, str, COLOR_RESET);
 	pthread_mutex_unlock(&philo.program->write_lock);
+}
+
+void free_all(t_program *program)
+{
+	int	i;
+
+	i = 0;
+	while (program->num_of_philos >  i)
+	{
+		pthread_mutex_destroy(&program->fork[i]);
+		free(&program->philo[i]);
+	}
+	pthread_mutex_destroy(&program->dead_lock);
+	pthread_mutex_destroy(&program->meal_lock);
+	pthread_mutex_destroy(&program->write_lock);
+	pthread_mutex_destroy(&program->dead_lock);
+	free(program);
 }

@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:50:24 by wecorzo-          #+#    #+#             */
-/*   Updated: 2024/04/23 14:39:55 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:20:57 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		create_threads(t_program *program, t_philo *philo);
 int		set_muthex_fork(t_program *program);
 void	ft_usleep(long time_requested);
 int		check_death(t_philo philo);
-void	start_eat(t_philo philo);
+void	start_eat(t_philo *philo);
 void	start_sleep(t_philo philo);
 void	start_think(t_philo philo);
 void	print_msg(char *str, char *color, t_philo philo);
