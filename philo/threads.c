@@ -18,14 +18,11 @@ void	*routine(void *ptr)
 
 	philo = *(t_philo *)ptr;
 	if (!(philo.id % 2))
-		ft_usleep(9);
+		ft_usleep(3);
 	while (!check_death(philo))
 	{
-		if (!check_death(philo))
 			start_eat(&philo);
-		if (!check_death(philo))
 			start_sleep(philo);
-		if (!check_death(philo))
 			start_think(philo);
 	}
 	return (NULL);
@@ -35,13 +32,17 @@ void	*monitoring(void *ptr)
 {
 	t_philo	*philo;
 
-	philo = (t_philo)ptr;
+	philo = (t_philo *)ptr;
 	while (1)
 	{
+		if (loop_death(philo))
+			break;
 		//check_any death
 		//check_all_eaten
 	}
-
+	//free_all(philo->program);
+	printf("se Murieron a la Verga");
+	return (NULL);
 }
 
 int	create_threads(t_program *program, t_philo *philo)
@@ -61,7 +62,7 @@ int	create_threads(t_program *program, t_philo *philo)
 			return (1);
 		i++;
 	}
-	if (pthread_join( .thread, NULL))
+	if (pthread_join( monitor, NULL))
 		return (1);
 	i = 0;
 	while (num_th > i)
@@ -70,7 +71,5 @@ int	create_threads(t_program *program, t_philo *philo)
 			return (1);
 		i++;
 	}
-	if (set_muthex_fork(program) == 1)
-		return (1);
 	return (0);
 }

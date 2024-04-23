@@ -76,6 +76,7 @@ int		init_program(t_program *program, char **argv);
 int		init_philo(char **argv, t_program *program, int argc);
 int		create_threads(t_program *program, t_philo *philo);
 int		set_muthex_fork(t_program *program);
+int		create_muthex_fork(t_program *program);
 void	ft_usleep(long time_requested);
 int		check_death(t_philo philo);
 void	start_eat(t_philo *philo);
@@ -83,4 +84,6 @@ void	start_sleep(t_philo philo);
 void	start_think(t_philo philo);
 void	print_msg(char *str, char *color, t_philo philo);
 size_t	get_time(void);
+int		loop_death(t_philo *philo);
+void	free_all(t_program *program);
 #endif

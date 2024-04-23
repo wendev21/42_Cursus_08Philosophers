@@ -74,20 +74,3 @@ void	print_msg(char *str, char *color, t_philo philo)
 	printf("%s%d--%s%s\n", color, philo.id, str, COLOR_RESET);
 	pthread_mutex_unlock(&philo.program->write_lock);
 }
-
-void free_all(t_program *program)
-{
-	int	i;
-
-	i = 0;
-	while (program->num_of_philos >  i)
-	{
-		pthread_mutex_destroy(&program->fork[i]);
-		free(&program->philo[i]);
-	}
-	pthread_mutex_destroy(&program->dead_lock);
-	pthread_mutex_destroy(&program->meal_lock);
-	pthread_mutex_destroy(&program->write_lock);
-	pthread_mutex_destroy(&program->dead_lock);
-	free(program);
-}

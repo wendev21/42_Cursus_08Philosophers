@@ -45,6 +45,7 @@ int	init_philo(char **argv, t_program *program, int argc)
 
 	i = 0;
 	program->philo = malloc(sizeof(t_philo) * program->num_of_philos);
+	create_muthex_fork(program);
 	while (program->num_of_philos > i)
 	{
 		program->philo[i].id = i + 1;
@@ -60,6 +61,7 @@ int	init_philo(char **argv, t_program *program, int argc)
 		program->philo[i].program = program;
 		i++;
 	}
+	set_muthex_fork(program);
 	if (create_threads(program, program->philo))
 		return (1);
 	return (0);

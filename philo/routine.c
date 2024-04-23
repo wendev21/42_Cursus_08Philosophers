@@ -12,48 +12,26 @@
 
 #include "philo.h"
 
-int	check_death(t_philo philo)
-{
-	int	i;
-
-	i = 0;
-	pthread_mutex_lock(&philo.program->dead_lock);
-	while (i < philo.program->num_of_philos)
-	{
-		pthread_mutex_lock(&philo.program->meal_lock);
-		if ((get_time() - philo.program->philo[i].last_eaten)
-			>= (philo.program->philo[i].time_to_die))
-		{
-			philo.program->dead_flag = 1;
-			pthread_mutex_unlock(&philo.program->meal_lock);
-			return (pthread_mutex_unlock(&philo.program->dead_lock), 1);
-		}
-		pthread_mutex_unlock(&philo.program->meal_lock);
-		if (philo.num_times_to_eat != -1)
-		{
-			if (philo.num_times_to_eat == philo.meals_eaten)
-				return (pthread_mutex_unlock(&philo.program->dead_lock), 1);
-		}
-		i++;
-	}
-	pthread_mutex_unlock(&philo.program->dead_lock);
-	return (0);
-}
 
 void	start_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->program->meal_lock);
+	pthread_mutex_lock((*philo).r_fork);
+	print_msg(TAKE_FORKS, COLOR_YELLOW, *philo);
 	if (philo->program->num_of_philos == 1)
-		ft_usleep(philo->time_to_die);
-	che
-	philo->meals_eaten += 1;
-	pthread_mutex_lock(&philo->program->write_lock);
-	//printf("ID: [%d] %d\n", philo->id, philo->meals_eaten);
-	pthread_mutex_unlock(&philo->program->write_lock);
-	ft_usleep(philo->time_to_eat);
-	philo->last_eaten = get_time();
+	{
+		(ft_usleep(philo->time_to_die), pthread_mutex_unlock((*philo).r_fork));
+		return ;
+	}
+	pthread_mutex_lock((*philo).l_fork);
+	print_msg(TAKE_FORKS, COLOR_YELLOW, *philo);
 	print_msg(EAT, COLOR_GREEN, *philo);
+	pthread_mutex_lock(&philo->program->meal_lock);
+	philo->meals_eaten += 1;
+	philo->last_eaten = get_time();
 	pthread_mutex_unlock(&philo->program->meal_lock);
+	ft_usleep(philo->time_to_eat);
+	pthread_mutex_unlock((*philo).r_fork);
+	pthread_mutex_unlock((*philo).l_fork);
 }
 
 void	start_sleep(t_philo philo)

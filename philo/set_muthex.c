@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-int	set_muthex_fork(t_program *program)
+int	create_muthex_fork(t_program *program)
 {
 	int	i;
 
@@ -24,6 +24,13 @@ int	set_muthex_fork(t_program *program)
 			return (printf("error"), 1);
 		i++;
 	}
+	return (0);
+}
+
+int	set_muthex_fork(t_program *program)
+{
+	int i;
+
 	i = 0;
 	while (program->num_of_philos - 1 > i)
 	{
@@ -33,6 +40,5 @@ int	set_muthex_fork(t_program *program)
 	}
 	program->philo[i].r_fork = &program->fork[i];
 	program->philo[i].l_fork = &program->fork[0];
-	i = 0;
 	return (0);
 }

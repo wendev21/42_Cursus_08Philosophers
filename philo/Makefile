@@ -18,6 +18,7 @@ SOURCES =  handle_error.c\
 		   set_muthex.c\
 		   ft_usleep.c\
 		   routine.c\
+		   death.c\
 		   main.c
 
 OBJS = $(SOURCES:.c=.o)
