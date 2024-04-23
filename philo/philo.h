@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:50:24 by wecorzo-          #+#    #+#             */
-/*   Updated: 2024/04/22 15:34:11 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:39:55 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define COLOR_RED "\033[0;31m"
 # define COLOR_GREEN "\033[0;32m"
 # define COLOR_BLUE "\033[0;36m"
+# define COLOR_YELLOW "\x1B[33m"
 # define COLOR_RESET "\033[0m"
 
 # define TAKE_FORKS "has taken a fork 🍴"
@@ -47,7 +48,8 @@ typedef struct s_philo
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	int				num_times_to_eat;
-	int				last_eaten;
+	size_t			start_time;
+	size_t			last_eaten;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	t_program		*program;
@@ -75,4 +77,10 @@ int		init_philo(char **argv, t_program *program, int argc);
 int		create_threads(t_program *program, t_philo *philo);
 int		set_muthex_fork(t_program *program);
 void	ft_usleep(long time_requested);
+int		check_death(t_philo philo);
+void	start_eat(t_philo philo);
+void	start_sleep(t_philo philo);
+void	start_think(t_philo philo);
+void	print_msg(char *str, char *color, t_philo philo);
+size_t	get_time(void);
 #endif

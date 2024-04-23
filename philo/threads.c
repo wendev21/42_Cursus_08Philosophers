@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:11:50 by wecorzo-          #+#    #+#             */
-/*   Updated: 2024/04/22 15:07:53 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:15:24 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ void	*routine(void *ptr)
 
 	philo = *(t_philo *)ptr;
 	if (!(philo.id % 2))
-		ft_usleep(100);
-	printf("has been created id : %d\n", philo.id);
+		ft_usleep(10);
+	if (!check_death(philo))
+		start_eat(philo);
+	if (!check_death(philo))
+		start_sleep(philo);
+	if (!check_death(philo))
+		start_think(philo);
 	return (NULL);
 }
 
@@ -32,6 +37,7 @@ int	create_threads(t_program *program, t_philo *philo)
 	i = 0;
 	while (num_th > i)
 	{
+		philo[i].start_time = get_time();
 		if (pthread_create(&philo[i].thread, NULL, &routine, (void *)&philo[i]))
 			return (1);
 		i++;

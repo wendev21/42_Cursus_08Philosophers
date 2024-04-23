@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:27:59 by wecorzo-          #+#    #+#             */
-/*   Updated: 2024/04/22 14:33:16 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:33:30 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	init_philo(char **argv, t_program *program, int argc)
 
 	i = 0;
 	program->philo = malloc(sizeof(t_philo) * program->num_of_philos);
-	if (!program->philo)
-		return (1);
 	while (program->num_of_philos > i)
 	{
 		program->philo[i].id = i + 1;
@@ -58,7 +56,7 @@ int	init_philo(char **argv, t_program *program, int argc)
 		program->philo[i].num_times_to_eat = -1;
 		if (argc == 6)
 			program->philo[i].num_times_to_eat = ft_atoi(argv[5]);
-		program->philo[i].last_eaten = 0;
+		program->philo[i].last_eaten = get_time();
 		program->philo[i].program = program;
 		i++;
 	}

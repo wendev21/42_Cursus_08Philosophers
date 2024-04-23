@@ -6,7 +6,7 @@
 /*   By: wecorzo- <wecorzo-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:43:58 by wecorzo-          #+#    #+#             */
-/*   Updated: 2024/04/22 12:31:39 by wecorzo-         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:14:15 by wecorzo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,12 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (num * sign);
+}
+
+void	print_msg(char *str, char *color, t_philo philo)
+{
+	pthread_mutex_lock(&philo.program->write_lock);
+	printf("[%zu]	", (get_time() - philo.start_time));
+	printf("%s%d--%s%s\n", color, philo.id, str, COLOR_RESET);
+	pthread_mutex_unlock(&philo.program->write_lock);
 }
